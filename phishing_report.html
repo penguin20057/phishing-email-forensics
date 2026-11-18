@@ -1,0 +1,78 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phishing Analyzer Report</title><style>
+:root{--bg:#f6f7f9;--fg:#1f2328;--card:#fff;--mut:#5f6368;--line:#e3e5e8}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#e8eaed;--card:#202327;--mut:#9aa0a6;--line:#33373c}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif}
+.w{max-width:960px;margin:auto;padding:24px 16px} h1{margin:0 0 4px} .sub{color:var(--mut)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0} .stat{flex:1;min-width:160px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.stat b{font-size:28px;display:block} .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap} h2{margin:0;font-size:18px}
+.v{color:#fff;padding:4px 12px;border-radius:999px;font-weight:700} .bar{height:6px;background:var(--line);border-radius:3px;margin:12px 0} .bar div{height:100%;border-radius:3px}
+table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word} th{color:var(--mut);width:140px;font-weight:500}
+.b{color:#fff;padding:1px 8px;border-radius:4px;font-size:12px;margin-right:6px} code{font-size:13px;word-break:break-all} li{margin:4px 0}
+</style></head><body><div class="w"><h1>Phishing Email Analyzer</h1><div class="sub">Phân tích header (SPF/DKIM/DMARC), mạo danh thương hiệu, URL và nội dung · 5 mẫu</div>
+<div class="stats"><div class="stat"><b>5/5</b>phát hiện là phishing</div>
+<div class="stat"><b>4/5</b>lọt qua spam filter gốc</div>
+<div class="stat"><b>76</b>điểm rủi ro trung bình</div></div>
+<div class="card"><h2>Tóm tắt</h2><table><tr><th>File</th><th>Spam filter gốc</th><th>Score</th><th>Kết luận</th></tr><tr><td>1_cloud_s3_docusign.eml</td><td>No, score=0.40</td><td>50</td><td style='color:#d93025;font-weight:700'>PHISHING</td></tr><tr><td>2_burner_chase.eml</td><td>Yes, score=13.78</td><td>85</td><td style='color:#d93025;font-weight:700'>PHISHING</td></tr><tr><td>3_direct_spoof_monkey.eml</td><td>No, score=1.40</td><td>100</td><td style='color:#d93025;font-weight:700'>PHISHING</td></tr><tr><td>4_replyto_docusign.eml</td><td>No, score=4.80</td><td>64</td><td style='color:#d93025;font-weight:700'>PHISHING</td></tr><tr><td>5_o365_relay_abuse.eml</td><td>No, score=8.20</td><td>80</td><td style='color:#d93025;font-weight:700'>PHISHING</td></tr></table></div>
+
+<div class="card"><div class="hd"><h2>1_cloud_s3_docusign.eml</h2>
+<div class="v" style="background:#d93025">PHISHING · 50/100</div></div>
+<div class="bar"><div style="width:50%;background:#d93025"></div></div>
+<table><tr><th>From</th><td>Docusign &lt;no-repy@feslegen.com.tr&gt;</td></tr>
+<tr><th>Subject</th><td>Document Attached for Your Review</td></tr>
+<tr><th>Return-Path</th><td>no-repy@feslegen.com.tr</td></tr>
+<tr><th>Reply-To</th><td>-</td></tr>
+<tr><th>Sender IP</th><td>176.236.57.46</td></tr>
+<tr><th>Auth</th><td>SPF <span class="b" style="background:#188038">pass</span> DKIM <span class="b" style="background:#188038">pass</span> DMARC <span class="b" style="background:#188038">pass</span></td></tr>
+<tr><th>Spam filter gốc</th><td>No, score=0.40</td></tr></table>
+<h3>Dấu hiệu phát hiện</h3><ul><li><b>+20</b> <code>BRAND</code> Tên hiển thị/tiêu đề mạo danh &#x27;Docusign&#x27; nhưng domain gửi là feslegen.com.tr</li><li><b>+30</b> <code>URL</code> 1 link độc hại – vd console-roundcube.s3.us-east-2.amazonaws.com</li></ul>
+<h3>Link độc hại</h3><ul><li><code>https://console-roundcube.s3.us-east-2.amazonaws.com/paree-webmail/cpanelnewround.html#jose@monkey.org</code><br><small>không thuộc domain thương hiệu bị mạo danh; nhúng email nạn nhân vào URL (điền sẵn trang login); từ khoá giả mạo trong URL</small></li></ul></div>
+<div class="card"><div class="hd"><h2>2_burner_chase.eml</h2>
+<div class="v" style="background:#d93025">PHISHING · 85/100</div></div>
+<div class="bar"><div style="width:85%;background:#d93025"></div></div>
+<table><tr><th>From</th><td>JPMorchan|Chase Client Support &lt;custrep@111b9dj0-c3d-11.com&gt;</td></tr>
+<tr><th>Subject</th><td>Bank Alert: Review your recent account activity on  Monday, January 6, 2025 7:9 a.m.</td></tr>
+<tr><th>Return-Path</th><td>custrep@111b9dj0-c3d-11.com</td></tr>
+<tr><th>Reply-To</th><td>-</td></tr>
+<tr><th>Sender IP</th><td>98.142.253.226</td></tr>
+<tr><th>Auth</th><td>SPF <span class="b" style="background:#188038">pass</span> DKIM <span class="b" style="background:#188038">pass</span> DMARC <span class="b" style="background:#188038">pass</span></td></tr>
+<tr><th>Spam filter gốc</th><td>Yes, score=13.78</td></tr></table>
+<h3>Dấu hiệu phát hiện</h3><ul><li><b>+20</b> <code>BRAND</code> Tên hiển thị/tiêu đề mạo danh &#x27;Chase&#x27; nhưng domain gửi là 111b9dj0-c3d-11.com</li><li><b>+15</b> <code>DOMAIN</code> Domain gửi trông ngẫu nhiên/burner: 111b9dj0-c3d-11.com</li><li><b>+30</b> <code>URL</code> 1 link độc hại – vd boxauth.ru</li><li><b>+15</b> <code>CONTENT</code> Ngôn ngữ thúc ép/credential: login, restricted, sign in, terminate, unusual, verify</li><li><b>+5</b> <code>ATTACH</code> Đính kèm không đuôi/khả nghi: [&#x27;Chase&#x27;]</li></ul>
+<h3>Link độc hại</h3><ul><li><code>https://boxauth.ru/mix/verifyacc.php?sec</code><br><small>TLD rủi ro; không thuộc domain thương hiệu bị mạo danh; từ khoá giả mạo trong URL</small></li></ul></div>
+<div class="card"><div class="hd"><h2>3_direct_spoof_monkey.eml</h2>
+<div class="v" style="background:#d93025">PHISHING · 100/100</div></div>
+<div class="bar"><div style="width:100%;background:#d93025"></div></div>
+<table><tr><th>From</th><td>Microsoft Outlook &lt;jose@monkey.org&gt;</td></tr>
+<tr><th>Subject</th><td>Review On Your jose@monkey.org Account</td></tr>
+<tr><th>Return-Path</th><td>nghatysolapioqyyw791002678ag@skyfilles.com</td></tr>
+<tr><th>Reply-To</th><td>-</td></tr>
+<tr><th>Sender IP</th><td>45.155.54.105</td></tr>
+<tr><th>Auth</th><td>SPF <span class="b" style="background:#188038">pass</span> DKIM <span class="b" style="background:#80868b">none</span> DMARC <span class="b" style="background:#d93025">fail</span></td></tr>
+<tr><th>Spam filter gốc</th><td>No, score=1.40</td></tr></table>
+<h3>Dấu hiệu phát hiện</h3><ul><li><b>+25</b> <code>AUTH</code> DMARC fail cho header.from=monkey.org (SPF không aligned, không có DKIM hợp lệ)</li><li><b>+5</b> <code>AUTH</code> DKIM = none</li><li><b>+25</b> <code>SPOOF</code> From giả mạo chính domain người nhận (monkey.org) nhưng gửi từ skyfilles.com</li><li><b>+20</b> <code>BRAND</code> Tên hiển thị/tiêu đề mạo danh &#x27;Microsoft&#x27; nhưng domain gửi là monkey.org</li><li><b>+10</b> <code>HEADER</code> Return-Path (skyfilles.com) khác domain From (monkey.org)</li><li><b>+30</b> <code>URL</code> 1 link độc hại – vd email-microsoffice-serverstystem810fga83.b-cdn.net</li><li><b>+12</b> <code>CONTENT</code> Ngôn ngữ thúc ép/credential: expire, interruption, login, password</li></ul>
+<h3>Link độc hại</h3><ul><li><code>https://email-microsoffice-serverstystem810fga83.b-cdn.net#jose@monkey.org</code><br><small>hosting/CDN bị lạm dụng; không thuộc domain thương hiệu bị mạo danh; nhúng email nạn nhân vào URL (điền sẵn trang login); từ khoá giả mạo trong URL</small></li></ul></div>
+<div class="card"><div class="hd"><h2>4_replyto_docusign.eml</h2>
+<div class="v" style="background:#d93025">PHISHING · 64/100</div></div>
+<div class="bar"><div style="width:64%;background:#d93025"></div></div>
+<table><tr><th>From</th><td>DocuSign via monkey.org &lt;myah@basolon.com&gt;</td></tr>
+<tr><th>Subject</th><td>Complete via DocuSign: Signature required for jose@monkey.org</td></tr>
+<tr><th>Return-Path</th><td>myah@basolon.com</td></tr>
+<tr><th>Reply-To</th><td>no-reply@docusign.com</td></tr>
+<tr><th>Sender IP</th><td>194.169.172.220</td></tr>
+<tr><th>Auth</th><td>SPF <span class="b" style="background:#188038">pass</span> DKIM <span class="b" style="background:#188038">pass</span> DMARC <span class="b" style="background:#188038">pass</span></td></tr>
+<tr><th>Spam filter gốc</th><td>No, score=4.80</td></tr></table>
+<h3>Dấu hiệu phát hiện</h3><ul><li><b>+20</b> <code>BRAND</code> Tên hiển thị/tiêu đề mạo danh &#x27;Docusign&#x27; nhưng domain gửi là basolon.com</li><li><b>+10</b> <code>HEADER</code> Reply-To (no-reply@docusign.com) khác domain From (basolon.com) – mượn danh docusign.com để tăng tin cậy</li><li><b>+25</b> <code>URL</code> 1 link độc hại – vd gobingobaby.com</li><li><b>+9</b> <code>CONTENT</code> Ngôn ngữ thúc ép/credential: review document, sign in, signature required</li></ul>
+<h3>Link độc hại</h3><ul><li><code>https://gobingobaby.com/gobing/2k?id=dgkpohfgczam9zZUBtb25rZXkub3Jn</code><br><small>email nạn nhân mã hoá base64 trong URL; không thuộc domain thương hiệu bị mạo danh</small></li></ul></div>
+<div class="card"><div class="hd"><h2>5_o365_relay_abuse.eml</h2>
+<div class="v" style="background:#d93025">PHISHING · 80/100</div></div>
+<div class="bar"><div style="width:80%;background:#d93025"></div></div>
+<table><tr><th>From</th><td>IT Delivery Notice &lt;Monkey@beamazedclean.com&gt;</td></tr>
+<tr><th>Subject</th><td>Document for your review Via Docusign - 2015 January 2025</td></tr>
+<tr><th>Return-Path</th><td>Monkey@beamazedclean.com</td></tr>
+<tr><th>Reply-To</th><td>-</td></tr>
+<tr><th>Sender IP</th><td>52.100.172.231</td></tr>
+<tr><th>Auth</th><td>SPF <span class="b" style="background:#188038">pass</span> DKIM <span class="b" style="background:#80868b">none</span> DMARC <span class="b" style="background:#80868b">none</span> Inner SPF <span class="b" style="background:#d93025">fail</span></td></tr>
+<tr><th>Spam filter gốc</th><td>No, score=8.20</td></tr></table>
+<h3>Dấu hiệu phát hiện</h3><ul><li><b>+5</b> <code>AUTH</code> DKIM = none</li><li><b>+20</b> <code>AUTH</code> Received-SPF FAIL ở hop Microsoft 365 – IP gửi không được phép, mail bị relay qua O365 để &#x27;tẩy&#x27; uy tín</li><li><b>+5</b> <code>AUTH</code> Không có DMARC cho domain gửi</li><li><b>+20</b> <code>BRAND</code> Tên hiển thị/tiêu đề mạo danh &#x27;Docusign&#x27; nhưng domain gửi là beamazedclean.com</li><li><b>+30</b> <code>URL</code> 1 link độc hại – vd lodgeisidoraspa.cl</li></ul>
+<h3>Link độc hại</h3><ul><li><code>https://lodgeisidoraspa.cl/cgi/webmail.html#jose@monkey.org</code><br><small>TLD rủi ro; không thuộc domain thương hiệu bị mạo danh; nhúng email nạn nhân vào URL (điền sẵn trang login); từ khoá giả mạo trong URL</small></li></ul></div></div></body></html>

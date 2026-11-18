@@ -1,0 +1,268 @@
+[
+  {
+    "file": "1_cloud_s3_docusign.eml",
+    "from": "Docusign <no-repy@feslegen.com.tr>",
+    "subject": "Document Attached for Your Review",
+    "return_path": "no-repy@feslegen.com.tr",
+    "reply_to": "-",
+    "sender_ip": "176.236.57.46",
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass",
+      "inner_spf": null
+    },
+    "spam_filter": "No, score=0.40",
+    "links": [
+      {
+        "url": "https://console-roundcube.s3.us-east-2.amazonaws.com/paree-webmail/cpanelnewround.html#jose@monkey.org",
+        "host": "console-roundcube.s3.us-east-2.amazonaws.com",
+        "reasons": [
+          "không thuộc domain thương hiệu bị mạo danh",
+          "nhúng email nạn nhân vào URL (điền sẵn trang login)",
+          "từ khoá giả mạo trong URL"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "points": 20,
+        "tag": "BRAND",
+        "detail": "Tên hiển thị/tiêu đề mạo danh 'Docusign' nhưng domain gửi là feslegen.com.tr"
+      },
+      {
+        "points": 30,
+        "tag": "URL",
+        "detail": "1 link độc hại – vd console-roundcube.s3.us-east-2.amazonaws.com"
+      }
+    ],
+    "score": 50,
+    "verdict": "PHISHING"
+  },
+  {
+    "file": "2_burner_chase.eml",
+    "from": "JPMorchan|Chase Client Support <custrep@111b9dj0-c3d-11.com>",
+    "subject": "Bank Alert: Review your recent account activity on  Monday, January 6, 2025 7:9 a.m.",
+    "return_path": "custrep@111b9dj0-c3d-11.com",
+    "reply_to": "-",
+    "sender_ip": "98.142.253.226",
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass",
+      "inner_spf": null
+    },
+    "spam_filter": "Yes, score=13.78",
+    "links": [
+      {
+        "url": "https://boxauth.ru/mix/verifyacc.php?sec",
+        "host": "boxauth.ru",
+        "reasons": [
+          "TLD rủi ro",
+          "không thuộc domain thương hiệu bị mạo danh",
+          "từ khoá giả mạo trong URL"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "points": 20,
+        "tag": "BRAND",
+        "detail": "Tên hiển thị/tiêu đề mạo danh 'Chase' nhưng domain gửi là 111b9dj0-c3d-11.com"
+      },
+      {
+        "points": 15,
+        "tag": "DOMAIN",
+        "detail": "Domain gửi trông ngẫu nhiên/burner: 111b9dj0-c3d-11.com"
+      },
+      {
+        "points": 30,
+        "tag": "URL",
+        "detail": "1 link độc hại – vd boxauth.ru"
+      },
+      {
+        "points": 15,
+        "tag": "CONTENT",
+        "detail": "Ngôn ngữ thúc ép/credential: login, restricted, sign in, terminate, unusual, verify"
+      },
+      {
+        "points": 5,
+        "tag": "ATTACH",
+        "detail": "Đính kèm không đuôi/khả nghi: ['Chase']"
+      }
+    ],
+    "score": 85,
+    "verdict": "PHISHING"
+  },
+  {
+    "file": "3_direct_spoof_monkey.eml",
+    "from": "Microsoft Outlook <jose@monkey.org>",
+    "subject": "Review On Your jose@monkey.org Account",
+    "return_path": "nghatysolapioqyyw791002678ag@skyfilles.com",
+    "reply_to": "-",
+    "sender_ip": "45.155.54.105",
+    "auth": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "fail",
+      "inner_spf": null
+    },
+    "spam_filter": "No, score=1.40",
+    "links": [
+      {
+        "url": "https://email-microsoffice-serverstystem810fga83.b-cdn.net#jose@monkey.org",
+        "host": "email-microsoffice-serverstystem810fga83.b-cdn.net",
+        "reasons": [
+          "hosting/CDN bị lạm dụng",
+          "không thuộc domain thương hiệu bị mạo danh",
+          "nhúng email nạn nhân vào URL (điền sẵn trang login)",
+          "từ khoá giả mạo trong URL"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "points": 25,
+        "tag": "AUTH",
+        "detail": "DMARC fail cho header.from=monkey.org (SPF không aligned, không có DKIM hợp lệ)"
+      },
+      {
+        "points": 5,
+        "tag": "AUTH",
+        "detail": "DKIM = none"
+      },
+      {
+        "points": 25,
+        "tag": "SPOOF",
+        "detail": "From giả mạo chính domain người nhận (monkey.org) nhưng gửi từ skyfilles.com"
+      },
+      {
+        "points": 20,
+        "tag": "BRAND",
+        "detail": "Tên hiển thị/tiêu đề mạo danh 'Microsoft' nhưng domain gửi là monkey.org"
+      },
+      {
+        "points": 10,
+        "tag": "HEADER",
+        "detail": "Return-Path (skyfilles.com) khác domain From (monkey.org)"
+      },
+      {
+        "points": 30,
+        "tag": "URL",
+        "detail": "1 link độc hại – vd email-microsoffice-serverstystem810fga83.b-cdn.net"
+      },
+      {
+        "points": 12,
+        "tag": "CONTENT",
+        "detail": "Ngôn ngữ thúc ép/credential: expire, interruption, login, password"
+      }
+    ],
+    "score": 100,
+    "verdict": "PHISHING"
+  },
+  {
+    "file": "4_replyto_docusign.eml",
+    "from": "DocuSign via monkey.org <myah@basolon.com>",
+    "subject": "Complete via DocuSign: Signature required for jose@monkey.org",
+    "return_path": "myah@basolon.com",
+    "reply_to": "no-reply@docusign.com",
+    "sender_ip": "194.169.172.220",
+    "auth": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass",
+      "inner_spf": null
+    },
+    "spam_filter": "No, score=4.80",
+    "links": [
+      {
+        "url": "https://gobingobaby.com/gobing/2k?id=dgkpohfgczam9zZUBtb25rZXkub3Jn",
+        "host": "gobingobaby.com",
+        "reasons": [
+          "email nạn nhân mã hoá base64 trong URL",
+          "không thuộc domain thương hiệu bị mạo danh"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "points": 20,
+        "tag": "BRAND",
+        "detail": "Tên hiển thị/tiêu đề mạo danh 'Docusign' nhưng domain gửi là basolon.com"
+      },
+      {
+        "points": 10,
+        "tag": "HEADER",
+        "detail": "Reply-To (no-reply@docusign.com) khác domain From (basolon.com) – mượn danh docusign.com để tăng tin cậy"
+      },
+      {
+        "points": 25,
+        "tag": "URL",
+        "detail": "1 link độc hại – vd gobingobaby.com"
+      },
+      {
+        "points": 9,
+        "tag": "CONTENT",
+        "detail": "Ngôn ngữ thúc ép/credential: review document, sign in, signature required"
+      }
+    ],
+    "score": 64,
+    "verdict": "PHISHING"
+  },
+  {
+    "file": "5_o365_relay_abuse.eml",
+    "from": "IT Delivery Notice <Monkey@beamazedclean.com>",
+    "subject": "Document for your review Via Docusign - 2015 January 2025",
+    "return_path": "Monkey@beamazedclean.com",
+    "reply_to": "-",
+    "sender_ip": "52.100.172.231",
+    "auth": {
+      "spf": "pass",
+      "dkim": "none",
+      "dmarc": "none",
+      "inner_spf": "fail"
+    },
+    "spam_filter": "No, score=8.20",
+    "links": [
+      {
+        "url": "https://lodgeisidoraspa.cl/cgi/webmail.html#jose@monkey.org",
+        "host": "lodgeisidoraspa.cl",
+        "reasons": [
+          "TLD rủi ro",
+          "không thuộc domain thương hiệu bị mạo danh",
+          "nhúng email nạn nhân vào URL (điền sẵn trang login)",
+          "từ khoá giả mạo trong URL"
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "points": 5,
+        "tag": "AUTH",
+        "detail": "DKIM = none"
+      },
+      {
+        "points": 20,
+        "tag": "AUTH",
+        "detail": "Received-SPF FAIL ở hop Microsoft 365 – IP gửi không được phép, mail bị relay qua O365 để 'tẩy' uy tín"
+      },
+      {
+        "points": 5,
+        "tag": "AUTH",
+        "detail": "Không có DMARC cho domain gửi"
+      },
+      {
+        "points": 20,
+        "tag": "BRAND",
+        "detail": "Tên hiển thị/tiêu đề mạo danh 'Docusign' nhưng domain gửi là beamazedclean.com"
+      },
+      {
+        "points": 30,
+        "tag": "URL",
+        "detail": "1 link độc hại – vd lodgeisidoraspa.cl"
+      }
+    ],
+    "score": 80,
+    "verdict": "PHISHING"
+  }
+]
